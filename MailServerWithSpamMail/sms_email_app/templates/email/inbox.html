@@ -1,0 +1,68 @@
+{% extends "email/layout.html" %}
+{% block body %}
+<div class="modal fade" id="secretModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">OTP Verification</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="secretotp" method="POST" class="position-sticky-top">
+                    {% csrf_token %}
+                    <div class="mt-3">
+                        <input type="text" class="form-control" id="otp" name="otp" placeholder="OTP">
+                        <button type="submit" class="btn btn-success mt-3">Verify</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="card mt-3">
+        <div class="card-header ">
+            <h1>Inbox</h1>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-light">
+                        <tr>
+                            <th>Date</th>
+                            <th>From</th>
+                            <th>Subject</th>
+                            <th >Message</th>
+                            <th>View</th>
+                            <th>Delete</th>
+                            <th>Spam</th>
+                        </tr>
+                        {% for i in msg %}  
+                        <tr>
+                            <td>{{i.date}}</td>
+                            <td>{{i.to.email}}</td>
+                            <td>{{i.subject}}</td>
+                            <td><textarea cols="30" rows="5" disabled>{{i.message}}</textarea></td>
+                            <td>                        
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#secretModal">
+                                    View
+                                </button>
+                            </td>
+                            <td>
+                                <a href="emaildelete/{{i.id}}">Delete</a>
+                            </td>
+                            <td>
+                                <a href="emailspam/{{i.id}}">Spam</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-foot"></div>
+    </div>
+{% endblock %}

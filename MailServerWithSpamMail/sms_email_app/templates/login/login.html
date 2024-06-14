@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-8"></div>
+    <div class="col-lg-4 shadow-lg p-4 rounded">
+        <span class="text-primary h3">Login</span><br>
+
+        <form action="log_user" method="POST">
+            {% csrf_token %}
+            <div class="form-floating mt-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder="username">
+                <label for="username">User Name</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                <label for="password">Password</label>
+            </div>
+            <div class="form-floating mt-3">
+                <input type="submit" value="Login" class="btn btn-outline-primary">
+            </div>
+            <div class="mt-4">
+                <a class="" href="register">Please Register here!</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

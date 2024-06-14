@@ -1,0 +1,37 @@
+{% extends "email/layout.html" %}
+{% block body %}
+    <div class="card mt-3">
+        <div class="card-header ">
+            <h1>Send</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-light  w-100">
+                <tr>
+                    <th>Date</th>
+                    <th>From</th>
+                    <th>Subject</th>
+                    <th>View</th>
+                    <th>Delete</th>
+                    <th>Spam</th>
+                </tr>
+                {% for i in frm %}
+                <tr>
+                    <td>{{i.date}}</td>
+                    <td>{{i.to.email}}</td>
+                    <td>{{i.subject}}</td>
+                    <td>
+                        <a href="viewmail/{{i.id}}">View</a>
+                    </td>
+                    <td>
+                        <a href="viewmail/{{i.id}}">Delete</a>
+                    </td>
+                    <td>
+                        <a href="viewmail/{{i.id}}">Spam</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="card-foot"></div>
+    </div>
+{% endblock %}

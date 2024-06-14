@@ -1,0 +1,35 @@
+{% extends "email/layout.html" %}
+{% block body %}
+    <div class="card mt-3">
+        <div class="card-header ">
+            <span class="h1">{{i.subject}}</span>
+            <div class="float-end">
+                <a href="emailview/{{i.id}}">View</a>
+                <a href="emaildelete/{{i.id}}">Delete</a>
+                <a href="emailspam/{{i.id}}">Spam</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-light">
+                <tr>
+                    <th>Date</th>
+                    <td>{{i.date}}</td>
+                </tr>
+                <tr>
+                    <th>From</th>
+                    <td>{{i.to.email}}</td>
+                </tr>
+                <tr>
+                    <th>Subject</th>
+                    <td>{{i.subject}}</td>
+                </tr>
+                <tr>
+                    <th>Message</th>
+                    <td >{{d_msg}}</td>
+
+                </tr>
+            </table>
+        </div>
+        <div class="card-foot"></div>
+    </div>
+{% endblock %}
